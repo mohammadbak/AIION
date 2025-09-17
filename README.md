@@ -3,98 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BnbAI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+  <title>BNB AI Token 3D</title>
   <style>
-    /* Reset و فونت */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; scroll-behavior: smooth;}
-    body { background: #f5f7fa; color: #333; line-height: 1.6;}
-    a { text-decoration: none; color: inherit; }
-    button { cursor: pointer; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      overflow: hidden;
+      perspective: 1000px; /* برای افکت 3D */
+    }
 
-    /* هدر */
-    header { background: linear-gradient(90deg, #6a11cb, #2575fc); color: white; padding: 20px 0; position: sticky; top: 0; z-index: 1000; }
-    header .container { display: flex; justify-content: space-between; align-items: center; width: 90%; margin: auto; }
-    header h1 { font-size: 1.8rem; }
-    nav a { margin-left: 20px; font-weight: 500; transition: 0.3s; }
-    nav a:hover { color: #ffd700; }
+    .hero {
+      position: relative;
+      text-align: center;
+      transform-style: preserve-3d;
+      transition: transform 0.1s;
+    }
 
-    /* بخش قهرمانی */
-    .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px; background: #fff; }
-    .hero h2 { font-size: 2.5rem; margin-bottom: 20px; color: #2575fc; animation: fadeInDown 1s ease forwards; }
-    .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; animation: fadeInUp 1s ease forwards; }
-    .hero button { padding: 15px 30px; background: #6a11cb; border: none; border-radius: 30px; color: white; font-weight: bold; transition: 0.3s; }
-    .hero button:hover { background: #2575fc; }
+    .layer {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255,255,255,0.6);
+    }
 
-    /* ویژگی‌ها */
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; width: 90%; margin: 60px auto; }
-    .feature { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; transition: 0.3s; }
-    .feature:hover { transform: translateY(-10px); }
-    .feature h3 { margin-bottom: 15px; color: #6a11cb; }
-    .feature p { color: #555; }
+    /* لایه پس‌زمینه نور */
+    .layer.bg {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+      filter: blur(60px);
+      z-index: -2;
+    }
 
-    /* فرم تماس */
-    .contact { background: #2575fc; color: white; padding: 80px 20px; text-align: center; }
-    .contact h2 { margin-bottom: 30px; }
-    .contact form { display: flex; flex-direction: column; max-width: 500px; margin: auto; }
-    .contact input, .contact textarea { padding: 15px; margin-bottom: 20px; border: none; border-radius: 10px; font-size: 1rem; }
-    .contact button { padding: 15px; border: none; border-radius: 30px; background: #6a11cb; color: white; font-weight: bold; transition: 0.3s; }
-    .contact button:hover { background: #fff; color: #2575fc; }
+    /* لایه تصویر توکن */
+    .layer.token {
+      width: 300px;
+      z-index: 1;
+      animation: float 6s ease-in-out infinite;
+    }
 
-    /* فوتر */
-    footer { text-align: center; padding: 30px 0; background: #1a1a1a; color: white; }
+    @keyframes float {
+      0%   { transform: translate(-50%, -50%) translateY(0px); }
+      25%  { transform: translate(-50%, -50%) translateY(-20px); }
+      50%  { transform: translate(-50%, -50%) translateY(0px); }
+      75%  { transform: translate(-50%, -50%) translateY(20px); }
+      100% { transform: translate(-50%, -50%) translateY(0px); }
+    }
 
-    /* انیمیشن‌ها */
-    @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-30px);} 100% { opacity: 1; transform: translateY(0);} }
-    @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px);} 100% { opacity: 1; transform: translateY(0);} }
+    /* دکمه شروع */
+    .start-btn {
+      position: relative;
+      margin-top: 350px;
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(90deg, #ff4d4d, #ff9933);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255,153,51,0.6);
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 2;
+    }
+
+    .start-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(255,153,51,0.8);
+    }
   </style>
 </head>
 <body>
+  <div class="hero" id="hero">
+    <div class="layer bg"></div>
+    <img src="ai-token.png" alt="توکن AI" class="layer token">
+    <button class="start-btn" onclick="startAction()">شروع کنید</button>
+  </div>
 
-  <header>
-    <div class="container">
-      <h1>BnbAI</h1>
-      <nav>
-        <a href="#features">ویژگی‌ها</a>
-        <a href="#contact">تماس با ما</a>
-      </nav>
-    </div>
-  </header>
+  <script>
+    const hero = document.getElementById('hero');
 
-  <section class="hero">
-    <h2>هوش مصنوعی برای تجربه‌ای بهتر در سفر</h2>
-    <p>BnbAI تجربه‌ای نوین از رزرو و مدیریت اقامتگاه‌ها با کمک هوش مصنوعی ارائه می‌دهد.</p>
-    <button>شروع کنید</button>
-  </section>
+    // افکت حرکت موس برای حس 3D
+    document.addEventListener('mousemove', (e) => {
+      const x = (window.innerWidth / 2 - e.pageX) / 20;
+      const y = (window.innerHeight / 2 - e.pageY) / 20;
+      hero.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
 
-  <section class="features" id="features">
-    <div class="feature">
-      <h3>جستجوی هوشمند</h3>
-      <p>با الگوریتم‌های پیشرفته ما بهترین گزینه‌های اقامتی را پیدا کنید.</p>
-    </div>
-    <div class="feature">
-      <h3>قیمت بهینه</h3>
-      <p>پیشنهادات ویژه و تخفیف‌های هوشمند برای سفرهای شما.</p>
-    </div>
-    <div class="feature">
-      <h3>پشتیبانی ۲۴/۷</h3>
-      <p>تیم ما همیشه آماده پاسخگویی به سوالات و مشکلات شماست.</p>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <h2>تماس با ما</h2>
-    <form>
-      <input type="text" placeholder="نام شما" required>
-      <input type="email" placeholder="ایمیل شما" required>
-      <textarea rows="5" placeholder="پیام شما" required></textarea>
-      <button type="submit">ارسال پیام</button>
-    </form>
-  </section>
-
-  <footer>
-    &copy; 2025 BnbAI. تمامی حقوق محفوظ است.
-  </footer>
-
+    function startAction() {
+      alert("کاربر روی شروع کلیک کرد! اینجا می‌توانید فرم یا اتصال به سرور قرار دهید.");
+    }
+  </script>
 </body>
 </html>
