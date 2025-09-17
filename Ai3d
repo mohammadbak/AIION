@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BNB AI Token 3D</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      overflow: hidden;
+      perspective: 1000px; /* برای افکت 3D */
+    }
+
+    .hero {
+      position: relative;
+      text-align: center;
+      transform-style: preserve-3d;
+      transition: transform 0.1s;
+    }
+
+    .layer {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255,255,255,0.6);
+    }
+
+    /* لایه پس‌زمینه نور */
+    .layer.bg {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+      filter: blur(60px);
+      z-index: -2;
+    }
+
+    /* لایه تصویر توکن */
+    .layer.token {
+      width: 300px;
+      z-index: 1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%   { transform: translate(-50%, -50%) translateY(0px); }
+      25%  { transform: translate(-50%, -50%) translateY(-20px); }
+      50%  { transform: translate(-50%, -50%) translateY(0px); }
+      75%  { transform: translate(-50
