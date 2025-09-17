@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIION Alpha</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      background: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+    .hamburger {
+      font-size: 28px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      z-index: 2000;
+      text-align: right;
+    }
+    .sidebar a {
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #fff;
+      display: block;
+      transition: 0.3s;
+    }
+    .sidebar a:hover {
+      background: #2563eb;
+    }
+    .sidebar .closebtn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 36px;
+    }
+    .main {
+      padding: 100px 20px;
+      text-align: center;
+    }
+    .main h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #2563eb;
+    }
+    .main p {
+      font-size: 20px;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+    }
+    .gif-container {
+      margin: 50px auto;
+      width: 300px;
+      height: 300px;
+    }
+    .gif-container img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+    }
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AIION</h1>
+    <span class="hamburger" onclick="openNav()">☰</span>
+  </header>
+
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="#">Dashboard</a>
+    <a href="#">Telegram</a>
+    <a href="#">Twitter</a>
+    <a href="#">Email</a>
+    <a href="#">About</a>
+  </div>
+
+  <div class="main">
+    <h2>Welcome to AIION Alpha</h2>
+    <p>
+      Experience the next generation of decentralized AI solutions.<br>
+      Fast, secure, and built for the future of Web3.
+    </p>
+    <div class="gif-container">
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXhyNzR5aW1ubjU0cW5pM3Fwb2k5ZjV4N3M3YjdoOXZwaG80cXQyZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/RH1IFd8kKk1V5xvU8J/giphy.gif" alt="AI Animation">
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 AIION Project | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+    }
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+    }
+  </script>
+</body>
+</html>
