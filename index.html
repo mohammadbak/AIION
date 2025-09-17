@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIION Token</title>
+<style>
+/* Reset و فونت */
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
+body {background:#0e0e0e;color:#fff;line-height:1.6;overflow-x:hidden;scroll-behavior:smooth;}
+
+/* پس‌زمینه ربات کم‌رنگ */
+body::before {
+  content:"";
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background: url('images/robot-background.png') center/cover no-repeat;
+  opacity:0.05;
+  z-index:-1;
+}
+
+/* Navbar / داشبورد */
+header {position:sticky;top:0;z-index:100;background:rgba(0,0,0,0.85);}
+.dashboard {display:flex;justify-content:space-between;align-items:center;padding:10px 40px;flex-wrap:wrap;}
+.dashboard h1 {font-size:28px;color:#00ffff;cursor:pointer;}
+.menu {list-style:none;display:flex;gap:20px;align-items:center;}
+.menu li a {color:#fff;text-decoration:none;font-weight:bold;display:flex;align-items:center;gap:5px;transition:0.3s;}
+.menu li a img {width:20px;}
+.menu li a:hover {color:#00ffff;}
+.nav-icons img {width:28px;margin-left:15px;cursor:pointer;transition:0.3s;}
+.nav-icons img:hover {transform:scale(1.2);}
+
+/* همبرگر منو موبایل */
+.hamburger {display:none;flex-direction:column;cursor:pointer;gap:5px;}
+.hamburger div {width:25px;height:3px;background:#00ffff;}
+@media(max-width:768px){
+  .menu {display:none;width:100%;flex-direction:column;margin-top:10px;}
+  .menu.active {display:flex;}
+  .hamburger {display:flex;}
+}
+
+/* Hero */
+.hero {position:relative;text-align:center;padding:120px 20px;}
+.token-wrapper {display:inline-block;animation:float 6s ease-in-out infinite, rotate 20s linear infinite;}
+.token {width:250px;border-radius:20px;}
+.hero h2 {font-size:40px;margin:20px 0;color:#00ffff;}
+.hero p {font-size:18px;margin-bottom:30px;}
+.hero button, .buy-btn {padding:15px 30px;font-size:18px;color:#fff;background:#00ffff;border:none;border-radius:8px;cursor:pointer;transition:0.3s;margin:5px;}
+.hero button:hover, .buy-btn:hover {background:#00cccc;}
+
+/* Features */
+.features {padding:80px 20px;background:#111;}
+.features h2 {text-align:center;margin-bottom:50px;color:#00ffff;}
+.feature-list {display:flex;flex-wrap:wrap;justify-content:center;gap:30px;}
+.feature {background:#1a1a1a;padding:20px;border-radius:15px;width:280px;text-align:center;transition:0.3s;cursor:pointer;}
+.feature:hover {transform:translateY(-10px);}
+.feature img {width:100%;border-radius:10px;margin-bottom:15px;}
+.feature h3 {color:#00ffff;margin-bottom:10px;}
+
+/* Roadmap */
+.roadmap {padding:80px 20px;background:#0f0f0f;text-align:center;}
+.roadmap h2 {margin-bottom:50px;color:#00ffff;}
+.phase {background:#1a1a1a;padding:20px;margin:10px auto;border-radius:10px;width:300px;transition:0.3s;}
+.phase:hover {transform:translateY(-10px);}
+
+/* Contact */
+.contact {padding:80px 20px;background:#111;text-align:center;}
+.contact h2 {margin-bottom:30px;color:#00ffff;}
+.contact form {display:flex;flex-direction:column;gap:15px;align-items:center;}
+.contact input, .contact textarea {padding:12px;width:300px;border-radius:8px;border:none;}
+.contact button {padding:12px 30px;background:#00ffff;color:#111;border:none;border-radius:8px;cursor:pointer;transition:0.3s;}
+.contact button:hover {background:#00cccc;}
+
+/* Footer */
+footer {background:#0f0f0f;padding:30px;text-align:center;}
+footer p {margin-bottom:10px;}
+footer .nav-icons img {width:25px;margin:0 10px;cursor:pointer;}
+footer .nav-icons img:hover {transform:scale(1.2);}
+
+/* انیمیشن ها */
+@keyframes float {0%{transform:translateY(0);}25%{transform:translateY(-20px);}50%{transform:translateY(0);}75%{transform:translateY(20px);}100%{transform:translateY(0);}}
+@keyframes rotate {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+
+/* Responsive Features */
+@media(max-width:768px){
+  .feature-list {flex-direction:column;align-items:center;}
+  .token {width:200px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dashboard">
+    <h1 onclick="window.scrollTo({top:0, behavior:'smooth'})">AIION</h1>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+    <ul class="menu">
+      <li><a href="#hero"><img src="images/home-icon.png" alt="خانه"> خانه</a></li>
+      <li><a href="#features"><img src="images/info-icon.png" alt="توضیحات"> توضیحات</a></li>
+      <li><a href="#buy"><img src="images/buy-icon.png" alt="نحوه خرید"> نحوه خرید</a></li>
+      <li><a href="#launchpad"><img src="images/launchpad-icon.png" alt="لانچ‌پد"> لانچ‌پد</a></li>
+      <li><a href="#about"><img src="images/about-icon.png" alt="درباره ما"> درباره ما</a></li>
+    </ul>
+    <div class="nav-icons">
+      <a href="https://twitter.com/BNB_AICOIN" target="_blank"><img src="images/twitter-icon.png" alt="Twitter"></a>
+      <a href="https://t.me/BNB_AICOIN" target="_blank"><img src="images/telegram-icon.png" alt="Telegram"></a>
+      <a href="mailto:info@example.com"><img src="images/email-icon.png" alt="Email"></a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="token-wrapper">
+    <img src="images/aiion-token.gif" alt="توکن AIION" class="token">
+  </div>
+  <h2>AIION – آینده ارزهای دیجیتال</h2>
+  <p>پلتفرم هوشمند بلاکچین با امنیت بالا و تراکنش سریع</p>
+  <button onclick="startAction()">شروع کنید</button>
+  <a href="https://example.com/buy-aiion" target="_blank" class="buy-btn" id="buy">خرید توکن AIION</a>
+</section>
+
+<section class="features" id="features">
+  <h2>ویژگی‌ها</h2>
+  <div class="feature-list">
+    <div class="feature">
+      <img src="images/feature1.gif" alt="ویژگی ۱">
+      <h3>امنیت بالا</h3>
+      <p>AIION با فناوری بلاکچین امن ساخته شده است.</p>
+    </div>
+    <div class="feature">
+      <img src="images/feature2.gif" alt="ویژگی ۲">
+      <h3>سرعت تراکنش</h3>
+      <p>پرداخت‌ها و انتقال‌ها در کمتر از چند ثانیه انجام می‌شوند.</p>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap" id="launchpad">
+  <h2>نقشه راه</h2>
+  <div class="phase">فاز ۱: عرضه اولیه</div>
+  <div class="phase">فاز ۲: لیست شدن در صرافی‌ها</div>
+  <div class="phase">فاز ۳: ویژگی‌های DeFi</div>
+  <div class="phase">فاز ۴: بازاریابی و جذب سرمایه‌گذار</div>
+</section>
+
+<section class="contact" id="about">
+  <h2>تماس با ما</h2>
+  <form>
+    <input type="text" placeholder="نام شما">
+    <input type="email" placeholder="ایمیل شما">
+    <textarea placeholder="پیام شما" rows="4"></textarea>
+    <button type="submit">ارسال پیام</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2025 AIION</p>
+  <div class="nav-icons">
+    <a href="https://twitter.com/BNB_AICOIN" target="_blank"><img src="images/twitter-icon.png" alt="Twitter"></a>
+    <a href="https://t.me/BNB_AICOIN" target="_blank"><img src="images/telegram-icon.png" alt="Telegram"></a>
+    <a href="mailto:info@example.com"><img src="images/email-icon.png" alt="Email"></a>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.querySelector('.menu').classList.toggle('active');
+}
+function startAction(){
+  alert("شروع شد! اینجا می‌توانید کد واقعی توکن AIION را اضافه کنید.");
+}
+</script>
+</body>
+</html>
