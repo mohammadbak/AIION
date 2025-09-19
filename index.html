@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aiion Meme - Ultra Professional</title>
+
+<!-- امنیت -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="no-referrer">
+
+<!-- فونت و آیکون -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- هدر -->
+<header>
+  <div class="logo">Aiion Meme</div>
+  <i class="fas fa-bars hamburger"></i>
+  <nav>
+    <a href="#about">معرفی</a>
+    <a href="#features">ویژگی‌ها</a>
+    <a href="#gifs">گیف‌ها</a>
+    <a href="#contact">تماس</a>
+  </nav>
+</header>
+
+<!-- معرفی -->
+<section id="about" class="card">
+  <h2>معرفی پروژه Aiion Meme</h2>
+  <p>پروژه‌ای حرفه‌ای با طراحی مدرن، افکت‌های 3D، امنیت بالا و تمرکز بر جامعه میم.</p>
+</section>
+
+<!-- ویژگی‌ها -->
+<section id="features" class="card">
+  <h2>ویژگی‌ها</h2>
+  <p>⚡ امنیت شدید | 🎨 طراحی مدرن | 📱 واکنش‌گرا | ✨ افکت‌های 3D و Parallax</p>
+</section>
+
+<!-- گیف‌ها -->
+<section id="gifs" class="card">
+  <h2>گیف‌ها</h2>
+
+  <div class="gif-block">
+    <div class="gif-placeholder" style="background-image:url('images/gif1.gif');"></div>
+    <p>متن زیر گیف ۱ (از نسخه ج)</p>
+  </div>
+
+  <div class="gif-block">
+    <div class="gif-placeholder" style="background-image:url('images/gif2.gif');"></div>
+    <p>متن زیر گیف ۲ (از نسخه ج)</p>
+  </div>
+
+  <div class="gif-block">
+    <div class="gif-placeholder" style="background-image:url('images/gif3.gif');"></div>
+    <p>متن زیر گیف ۳ (از نسخه ج)</p>
+  </div>
+
+  <div class="gif-block">
+    <div class="gif-placeholder" style="background-image:url('images/gif4.gif');"></div>
+    <p>متن زیر گیف ۴ (از نسخه ج)</p>
+  </div>
+</section>
+
+<!-- ارتباط با ما -->
+<section id="contact" class="card">
+  <h2>ارتباط با ما</h2>
+  <p>از طریق شبکه‌های اجتماعی با ما در تماس باشید:</p>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-telegram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="mailto:contact@aiionmeme.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</section>
+
+<!-- فوتر -->
+<footer>
+  <p>© 2025 Aiion Meme | تمام حقوق محفوظ است</p>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
+/* استایل عمومی */
+* {margin:0; padding:0; box-sizing:border-box;}
+html, body {
+  width:100%; height:100%;
+  font-family:'Roboto Mono', monospace;
+  background:#000; color:#fff; overflow-x:hidden;
+}
+canvas {position:fixed; top:0; left:0; z-index:0; display:block;}
+
+/* هدر */
+header {
+  position:absolute; top:0; width:100%;
+  padding:20px 50px;
+  display:flex; justify-content:space-between; align-items:center;
+  background: rgba(0,0,0,0.3); backdrop-filter: blur(8px);
+  z-index:20; color:#00ffd1; font-size:1.8rem;
+}
+.logo {font-weight:700;}
+nav {display:flex; gap:20px;}
+nav a {
+  color:#00ffd1; text-decoration:none; font-weight:700; transition:0.3s;
+}
+nav a:hover {color:#0ff; transform:scale(1.1);}
+.hamburger {display:none; font-size:2rem; cursor:pointer;}
+
+/* بخش‌ها */
+section {
+  position:relative; width:100%; min-height:100vh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; padding:50px; z-index:5; opacity:1;
+}
+.card {
+  background: rgba(255,255,255,0.05);
+  border-radius:20px; padding:30px; margin:20px 0;
+  width:90%; max-width:1000px;
+  box-shadow:0 0 15px rgba(0,255,255,0.2);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+.card:hover {
+  transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+  box-shadow:0 0 35px rgba(0,255,255,0.7);
+}
+h2 {
+  font-size:2.8rem; margin-bottom:15px;
+  color:#0ff; text-shadow:0 0 10px #0ff;
+}
+p {max-width:700px; line-height:1.6; margin-bottom:20px;}
+
+/* گیف‌ها */
+.gif-block {
+  margin:30px 0;
+}
+.gif-placeholder {
+  width:300px; height:300px;
+  display:flex; justify-content:center; align-items:center;
+  border-radius:20px; margin:0 auto 15px auto;
+  background-size:cover; background-position:center;
+  background-color: rgba(0,255,255,0.1);
+  box-shadow:0 0 15px rgba(0,255,255,0.4);
+  transition:0.3s;
+}
+.gif-placeholder:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow:0 0 30px rgba(0,255,255,0.8);
+}
+
+/* شبکه‌های اجتماعی */
+.social-icons {
+  display:flex; gap:20px; margin-top:10px;
+  justify-content:center; flex-wrap:wrap;
+}
+.social-icons a {
+  color:#00ffd1; font-size:1.5rem;
+  transition:0.3s; text-shadow:0 0 5px #00ffd1;
+}
+.social-icons a:hover {
+  color:#0ff; transform:scale(1.4);
+  text-shadow:0 0 20px #0ff;
+}
+
+/* دکمه‌ها */
+button {
+  background:#00ffd1; border:none; padding:12px 25px;
+  border-radius:10px; font-weight:700; cursor:pointer;
+  transition:0.3s; color:#000; box-shadow:0 0 5px #00ffd1;
+}
+button:hover {
+  transform:scale(1.1); box-shadow:0 0 25px #0ff;
+  animation:pulse 1.2s infinite;
+}
+@keyframes pulse {
+  0%,100%{transform:scale(1.1);}
+  50%{transform:scale(1.15);}
+}
+
+/* فوتر */
+footer {
+  width:100%; padding:40px 20px;
+  background:#001f26; color:#0ff; text-align:center;
+}
+
+/* ریسپانسیو */
+@media(max-width:900px) {
+  nav {
+    display:none; flex-direction:column;
+    background: rgba(0,0,0,0.9);
+    position:absolute; top:70px; right:0; width:200px; padding:20px;
+    border-radius:10px;
+  }
+  nav.show {display:flex;}
+  .hamburger {display:block;}
+}
+// -------------------- منوی همبرگر --------------------
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('nav');
+hamburger.addEventListener('click', () => {
+  nav.classList.toggle('show');
+});
+
+// -------------------- GSAP Scroll Animations --------------------
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray("section").forEach((section) => {
+  gsap.from(section, {
+    scrollTrigger: {
+      trigger: section,
+      start: "top 85%",
+    },
+    opacity: 0,
+    y: 80,
+    duration: 1.2,
+    ease: "power3.out"
+  });
+});
+
+// -------------------- Three.js Particles --------------------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  3000
+);
+camera.position.z = 800;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+document.body.appendChild(renderer.domElement);
+
+// نور
+scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+const directional = new THREE.DirectionalLight(0x00ffff, 0.8);
+directional.position.set(1, 1, 1);
+scene.add(directional);
+
+// ذرات
+const particleCount = 5000;
+const geometry = new THREE.BufferGeometry();
+const positions = new Float32Array(particleCount * 3);
+
+for (let i = 0; i < particleCount * 3; i++) {
+  positions[i] = (Math.random() - 0.5) * 3000;
+}
+geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+const material = new THREE.PointsMaterial({
+  color: 0x00fff7,
+  size: 2,
+  transparent: true,
+  opacity: 0.7,
+});
+
+const particles = new THREE.Points(geometry, material);
+scene.add(particles);
+
+// انیمیشن
+function animate() {
+  requestAnimationFrame(animate);
+  particles.rotation.y += 0.0008;
+  particles.rotation.x += 0.0003;
+  renderer.render(scene, camera);
+}
+animate();
+
+// ریسایز
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
