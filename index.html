@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIION Token</title>
+<style>
+/* Reset and Font */
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
+body {background:#0e0e0e;color:#fff;line-height:1.6;overflow-x:hidden;scroll-behavior:smooth;}
+body::before {content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:url('robot-background.jpg') center/cover no-repeat;opacity:0.15;z-index:-1;}
+
+/* Navbar / Dashboard */
+header {position:sticky;top:0;z-index:100;background:rgba(0,0,0,0.85);}
+.dashboard {display:flex;justify-content:space-between;align-items:center;padding:10px 40px;flex-wrap:wrap;}
+.dashboard h1 {font-size:28px;color:#00ffff;cursor:pointer;}
+.nav-left {display:flex;align-items:center;gap:15px;}
+.nav-left img {width:28px;cursor:pointer;transition:0.3s;}
+.nav-left img:hover {transform:scale(1.2);}
+.menu-wrapper {display:flex;align-items:center;gap:20px;}
+.menu {list-style:none;display:flex;gap:20px;align-items:center;}
+.menu li a {color:#fff;text-decoration:none;font-weight:bold;display:flex;align-items:center;gap:5px;transition:0.3s;}
+.menu li a img {width:20px;}
+.menu li a:hover {color:#00ffff;}
+.hamburger {display:none;flex-direction:column;cursor:pointer;gap:5px;margin-left:20px;}
+.hamburger div {width:25px;height:3px;background:#00ffff;transition:0.3s;}
+.hamburger:hover div {transform:scaleX(1.2);}
+@media(max-width:768px){
+  .menu-wrapper {position:relative;}
+  .menu {display:none;position:absolute;top:60px;right:0;background:#111;flex-direction:column;padding:20px;border-radius:10px;z-index:100;width:200px;}
+  .menu.active {display:flex;}
+  .hamburger {display:flex;}
+}
+
+/* Hero */
+.hero {position:relative;text-align:center;padding:120px 20px;}
+.token-wrapper {display:inline-block;animation:float 6s ease-in-out infinite, rotate 20s linear infinite;}
+.token {width:250px;border-radius:20px;}
+.hero h2 {font-size:40px;margin:20px 0;color:#00ffff;}
+.hero p {font-size:18px;margin-bottom:30px;}
+.hero .hero-buttons {display:flex;flex-direction:column;align-items:center;gap:15px;}
+.hero button, .buy-btn {padding:15px 30px;font-size:18px;color:#fff;background:#00ffff;border:none;border-radius:8px;cursor:pointer;transition:0.3s;width:220px;text-align:center;}
+.hero button:hover, .buy-btn:hover {background:#00cccc;}
+
+/* Features */
+.features {padding:80px 20px;background:#111;}
+.features h2 {text-align:center;margin-bottom:50px;color:#00ffff;}
+.feature-list {display:flex;flex-wrap:wrap;justify-content:center;gap:30px;}
+.feature {background:#1a1a1a;padding:20px;border-radius:15px;width:280px;text-align:center;transition:0.3s;cursor:pointer;}
+.feature:hover {transform:translateY(-10px);}
+.feature img {width:100%;border-radius:10px;margin-bottom:15px;}
+.feature h3 {color:#00ffff;margin-bottom:10px;}
+.feature p {color:#ccc;}
+
+/* Roadmap */
+.roadmap {padding:80px 20px;background:#0f0f0f;text-align:center;}
+.roadmap h2 {margin-bottom:50px;color:#00ffff;}
+.phase {background:#1a1a1a;padding:20px;margin:10px auto;border-radius:10px;width:300px;transition:0.3s;}
+.phase:hover {transform:translateY(-10px);}
+
+/* Contact */
+.contact {padding:80px 20px;background:#111;text-align:center;}
+.contact h2 {margin-bottom:30px;color:#00ffff;}
+.contact form {display:flex;flex-direction:column;gap:15px;align-items:center;}
+.contact input, .contact textarea {padding:12px;width:300px;border-radius:8px;border:none;}
+.contact button {padding:12px 30px;background:#00ffff;color:#111;border:none;border-radius:8px;cursor:pointer;transition:0.3s;}
+.contact button:hover {background:#00cccc;}
+
+/* Footer */
+footer {background:#0f0f0f;padding:30px;text-align:center;}
+footer p {margin-bottom:10px;}
+footer .nav-icons img {width:25px;margin:0 10px;cursor:pointer;}
+footer .nav-icons img:hover {transform:scale(1.2);}
+
+/* Animations */
+@keyframes float {0%{transform:translateY(0);}25%{transform:translateY(-20px);}50%{transform:translateY(0);}75%{transform:translateY(20px);}100%{transform:translateY(0);}}
+@keyframes rotate {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+@media(max-width:768px){.feature-list {flex-direction:column;align-items:center;}.token {width:200px;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dashboard">
+    <div class="nav-left">
+      <a href="https://twitter.com/BNB_AICOIN" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
+      <a href="https://t.me/BNB_AICOIN" target="_blank"><img src="telegram-icon.png" alt="Telegram"></a>
+      <a href="mailto:info@example.com"><img src="email-icon.png" alt="Email"></a>
+    </div>
+    <h1 onclick="window.scrollTo({top:0, behavior:'smooth'})">AIION</h1>
+    <div class="menu-wrapper">
+      <ul class="menu">
+        <li><a href="#hero"><img src="home-icon.png" alt="Home"> Home</a></li>
+        <li><a href="#features"><img src="info-icon.png" alt="Features"> Features</a></li>
+        <li><a href="#buy"><img src="buy-icon.png" alt="How to Buy"> How to Buy</a></li>
+        <li><a href="#launchpad"><img src="launchpad-icon.png" alt="Launchpad"> Launchpad</a></li>
+        <li><a href="#about"><img src="about-icon.png" alt="About"> About</a></li>
+        <li><a href="story.html"><img src="story-icon.png" alt="Story"> Story</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div><div></div><div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="token-wrapper">
+    <img src="aiion-token.gif" alt="AIION Token" class="token">
+  </div>
+  <h2>AIION – The Future of Digital Assets</h2>
+  <p>Smart blockchain platform with high security and fast transactions.</p>
+  <div class="hero-buttons">
+    <button onclick="startAction()">Get Started</button>
+    <a href="https://example.com/buy-aiion" target="_blank" class="buy-btn" id="buy">Buy AIION Token</a>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <h2>Features</h2>
+  <div class="feature-list">
+    <div class="feature">
+      <img src="aiion-launch.gif" alt="Launch GIF">
+      <h3>AIION Launch</h3>
+      <p>We are here to support the ION network, and we launched our meme token on the ION network, and together we will go to the moon and make the ION community bigger.</p>
+    </div>
+    <div class="feature">
+      <img src="aiion-ecosystem.gif" alt="Ecosystem GIF">
+      <h3>Community & Interaction</h3>
+      <p>Engage actively with the AIION community to expand social interactions, contribute to ION blockchain growth, and strengthen the ecosystem together.</p>
+    </div>
+    <div class="feature">
+      <img src="aiion-transactions.gif" alt="Transactions GIF">
+      <h3>Growing ION</h3>
+      <p>Helping expand the ION chain, strengthening the community, and actively supporting the blockchain’s growth and ecosystem development.</p>
+    </div>
+    <div class="feature">
+      <img src="aiion-chaharom.gif" alt="Future GIF">
+      <h3>Future Partnerships</h3>
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIION Story</title>
+<style>
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
+body {background:#0e0e0e;color:#fff;line-height:1.6;overflow-x:hidden;scroll-behavior:smooth;}
+header {position:sticky;top:0;z-index:100;background:rgba(0,0,0,0.85);}
+.dashboard {display:flex;justify-content:space-between;align-items:center;padding:10px 40px;flex-wrap:wrap;}
+.dashboard h1 {font-size:28px;color:#00ffff;cursor:pointer;}
+.nav-left {display:flex;align-items:center;gap:15px;}
+.nav-left img {width:28px;cursor:pointer;transition:0.3s;}
+.nav-left img:hover {transform:scale(1.2);}
+.menu-wrapper {display:flex;align-items:center;gap:20px;}
+.menu {list-style:none;display:flex;gap:20px;align-items:center;}
+.menu li a {color:#fff;text-decoration:none;font-weight:bold;display:flex;align-items:center;gap:5px;transition:0.3s;}
+.menu li a img {width:20px;}
+.menu li a:hover {color:#00ffff;}
+.hamburger {display:none;flex-direction:column;cursor:pointer;gap:5px;margin-left:20px;}
+.hamburger div {width:25px;height:3px;background:#00ffff;transition:0.3s;}
+.hamburger:hover div {transform:scaleX(1.2);}
+@media(max-width:768px){
+  .menu-wrapper {position:relative;}
+  .menu {display:none;position:absolute;top:60px;right:0;background:#111;flex-direction:column;padding:20px;border-radius:10px;z-index:100;width:200px;}
+  .menu.active {display:flex;}
+  .hamburger {display:flex;}
+}
+.story-hero {text-align:center;padding:100px 20px;}
+.story-hero h2 {color:#00ffff;font-size:36px;margin-bottom:20px;}
+.story-hero p {font-size:18px;margin-bottom:30px;color:#ccc;}
+.story-section {padding:60px 20px;text-align:center;}
+.story-section h3 {color:#00ffff;margin-bottom:15px;}
+.story-section p {color:#ccc;max-width:800px;margin:0 auto 30px;}
+.story-section img {max-width:100%;border-radius:15px;margin-bottom:20px;}
+footer {background:#0f0f0f;padding:30px;text-align:center;}
+footer .nav-icons img {width:25px;margin:0 10px;cursor:pointer;}
+footer .nav-icons img:hover {transform:scale(1.2);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dashboard">
+    <div class="nav-left">
+      <a href="index.html"><img src="home-icon.png" alt="Home"></a>
+      <a href="https://twitter.com/BNB_AICOIN" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
+      <a href="https://t.me/BNB_AICOIN" target="_blank"><img src="telegram-icon.png" alt="Telegram"></a>
+    </div>
+    <h1 onclick="window.scrollTo({top:0, behavior:'smooth'})">AIION Story</h1>
+    <div class="menu-wrapper">
+      <ul class="menu">
+        <li><a href="index.html"><img src="home-icon.png" alt="Home"> Home</a></li>
+        <li><a href="#story"><img src="story-icon.png" alt="Story"> Story</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+    </div>
+  </div>
+</header>
+
+<section class="story-hero" id="story">
+  <h2>AIION Token Journey</h2>
+  <p>Discover the story behind AIION, our mission, vision, and the future of blockchain innovation.</p>
+  <img src="aiion-3d.gif" alt="3D AIION Animation">
+</section>
+
+<section class="story-section">
+  <h3>Genesis</h3>
+  <p>AIION was created to provide a secure and fast blockchain ecosystem for users globally. Our vision is to empower communities through decentralized technologies.</p>
+  <img src="story-genesis.gif" alt="Genesis Animation">
+</section>
+
+<section class="story-section">
+  <h3>Expansion</h3>
+  <p>AIION actively expands the ION network, engages with communities, and strengthens social interactions through blockchain innovations.</p>
+  <img src="story-expansion.gif" alt="Expansion Animation">
+</section>
+
+<section class="story-section">
+  <h3>Future</h3>
+  <p>We plan to integrate DeFi, NFT, and other advanced technologies to ensure AIION remains at the forefront of blockchain development.</p>
+  <img src="story-future.gif" alt="Future Animation">
+</section>
+
+<footer>
+  <p>© 2025 AIION</p>
+  <div class="nav-icons">
+    <a href="index.html"><img src="home-icon.png" alt="Home"></a>
+    <a href="https://twitter.com/BNB_AICOIN" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
+    <a href="https://t.me/BNB_AICOIN" target="_blank"><img src="telegram-icon.png" alt="Telegram"></a>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.querySelector('.menu').classList.toggle('active');
+}
+</script>
+</body>
+</html>
