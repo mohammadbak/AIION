@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Aiion Meme — Full</title>
+
+  <!-- Security headers (frontend meta - server should add stronger headers) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="no-referrer">
+
+  <!-- Fonts & CDN libs -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Inline CSS (all styling for single-file deploy) -->
+  <style>
+    :root{
+      --accent: #00f6e8;
+      --glass: rgba(255,255,255,0.04);
+      --glass-strong: rgba(255,255,255,0.08);
+      --back-dark: rgba(0,0,0,0.6);
+      --max-width: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, Tahoma, sans-serif;background:#000;color:#fff;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+    /* Canvas background should be behind content */
+    canvas#bg { position:fixed; inset:0; width:100%; height:100%; z-index:-2; pointer-events:none; display:block; }
+
+    /* fallback static bg under canvas (visible if canvas hidden) */
+    .bg-fallback { position:fixed; inset:0; background-image:url('robot-background.jpg'); background-size:cover; background-position:center; z-index:-3; filter:brightness(.6); }
+
+    /* header */
+    header{position:fixed; top:0; left:0; right:0; height:64px; display:flex; align-items:center; justify-content:space-between; padding:0 20px; z-index:20;}
+    header .glass { background:linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.22)); backdrop-filter:blur(8px); border-radius:12px; padding:8px 14px; display:flex; gap:12px; align-items:center; box-shadow:0 6px 18px rgba(0,0,0,0.6); }
+    .logo { color:var(--accent); font-weight:700; font-size:1.05rem; letter-spacing:0.6px; }
+    .nav-inline { display:flex; gap:14px; align-items:center; }
+    .nav-inline a{ color:#cfeffb; text-decoration:none; font-weight:600; font-size:0.95rem; display:flex; gap:8px; align-items:center; padding:8px 10px; border-radius:8px; transition:all .18s ease; }
+    .nav-inline a img.icon{ width:18px;height:18px; opacity:.95; }
+    .nav-inline a:hover{ transform:translateY(-2px); color:var(--accent); background:rgba(0,0,0,0.25); }
+
+    /* hamburger for small screens */
+    .hamburger { display:none; font-size:22px; cursor:pointer; padding:8px; border-radius:8px; color:#cfeffb; }
+    .menu-drawer { position:fixed; top:74px; right:18px; background:rgba(0,0,0,0.9); padding:14px; border-radius:12px; display:none; z-index:25; min-width:220px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+    .menu-drawer.show { display:block; animation:fadeIn .22s ease; }
+    .menu-drawer a{ display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; padding:8px 6px; border-radius:8px; }
+    .menu-drawer a img{ width:20px; height:20px; }
+
+    /* hero (full-screen gif) */
+    .section { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:36px 20px; position:relative; z-index:2; }
+    .hero-wrap { width:100%; max-width:var(--max-width); margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:18px; }
+    .hero-gif { width:100%; height:auto; max-height:68vh; object-fit:cover; border-radius:14px; box-shadow:0 18px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0,246,232,0.06); border:1px solid rgba(255,255,255,0.03); }
+    .hero-title { color:var(--accent); font-weight:800; font-size:clamp(20px,4vw,36px); letter-spacing:1px; margin:0; text-align:center; text-shadow:0 8px 30px rgba(0,0,0,0.6); }
+    .hero-desc { color: #dff; max-width:840px; text-align:center; font-size:clamp(14px,1.4vw,18px); line-height:1.6; opacity:.95; }
+
+    /* each feature section -> full width gif + text under */
+    .feature { width:100%; display:flex; justify-content:center; padding:36px 16px; }
+    .feature-inner { width:100%; max-width:var(--max-width); display:flex; flex-direction:column; align-items:center; gap:18px; }
+    .feature-gif { width:100%; height:auto; object-fit:cover; border-radius:12px; box-shadow:0 18px 40px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.03); }
+    .feature-title { color:var(--accent); font-size:clamp(18px,2.6vw,28px); margin:0; font-weight:700; }
+    .feature-desc { max-width:900px; color:#dff; text-align:center; font-size:clamp(13px,1.2vw,16px); line-height:1.65; }
+
+    /* footer */
+    footer { padding:36px 20px; background:linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.6)); text-align:center; position:relative; z-index:2; }
+    .socials { display:flex; gap:12px; justify-content:center; margin-top:10px; }
+    .socials img{ width:36px; height:36px; filter:drop-shadow(0 6px 18px rgba(0,0,0,0.5)); transition:transform .18s ease; }
+    .socials img:hover{ transform:scale(1.15); }
+
+    /* small screens */
+    @media (max-width:900px){
+      .nav-inline { display:none; }
+      .hamburger { display:block; }
+      .hero-gif { max-height:54vh; border-radius:10px; }
+      .feature-gif { border-radius:10px; }
+      .menu-drawer { right:12px; left:12px; }
+    }
+
+    /* animation keyframes */
+    @keyframes fadeIn { from { opacity:0; transform: translateY(-8px);} to { opacity:1; transform: none; } }
+
+    /* accessibility helpers */
+    a, button { -webkit-tap-highlight-color: transparent; }
+  </style>
+
+  <!-- libs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  <!-- fallback static background (in case canvas hidden or webgl fail) -->
+  <div class="bg-fallback" aria-hidden="true"></div>
+
+  <!-- WebGL canvas (behind content) -->
+  <canvas id="bg" aria-hidden="true"></canvas>
+
+  <!-- header -->
+  <header>
+    <div class="glass" role="banner">
+      <div class="logo">Aiion Meme</div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;">
+      <nav class="nav-inline" aria-label="Main">
+        <a href="#hero"><img src="home-icon.png" class="icon" alt=""><span>خانه</span></a>
+        <a href="#feature1"><img src="info-icon.png" class="icon" alt=""><span>ویژگی‌ها</span></a>
+        <a href="#howto"><img src="buy-icon.png" class="icon" alt=""><span>راهنما</span></a>
+        <a href="#launchpad"><img src="launchpad-icon.png" class="icon" alt=""><span>Launchpad</span></a>
+        <a href="#about"><img src="about-icon.png" class="icon" alt=""><span>درباره</span></a>
+      </nav>
+
+      <button class="hamburger" aria-expanded="false" aria-controls="menu-drawer" title="منوی اصلی">☰</button>
+    </div>
+  </header>
+
+  <div id="menu-drawer" class="menu-drawer" role="dialog" aria-hidden="true" aria-modal="false">
+    <a href="#hero"><img src="home-icon.png" alt="">خانه</a>
+    <a href="#feature1"><img src="info-icon.png" alt="">ویژگی‌ها</a>
+    <a href="#howto"><img src="buy-icon.png" alt="">نحوه خرید</a>
+    <a href="#launchpad"><img src="launchpad-icon.png" alt="">Launchpad</a>
+    <a href="#about"><img src="about-icon.png" alt="">درباره ما</a>
+  </div>
+
+  <!-- SECTIONS (each full gif + text) -->
+  <main>
+    <section id="hero" class="section">
+      <div class="hero-wrap">
+        <img src="aiion-token.gif" alt="AIION Token" class="hero-gif full-gif" />
+        <h1 class="hero-title">Aiion Meme Token</h1>
+        <p class="hero-desc">ترکیب بلاکچین و هوش مصنوعی — میم‌هایی که شوخی نمی‌کنند!</p>
+      </div>
+    </section>
+
+    <section id="feature1" class="section feature">
+      <div class="feature-inner">
+        <img src="aiion-launch.gif" alt="Launch" class="feature-gif full-gif"/>
+        <h2 class="feature-title">راه‌اندازی (Launch)</h2>
+        <p class="feature-desc">متن دقیق زیر گیف (همان متن نسخه ج برای Feature 1 — اینجا قرار می‌گیرد).</p>
+      </div>
+    </section>
+
+    <section id="feature2" class="section feature">
+      <div class="feature-inner">
+        <img src="aiion-ecosystem.gif" alt="Ecosystem" class="feature-gif full-gif"/>
+        <h2 class="feature-title">اکوسیستم</h2>
+        <p class="feature-desc">متن دقیق زیر گیف (نسخه ج — Feature 2).</p>
+      </div>
+    </section>
+
+    <section id="feature3" class="section feature">
+      <div class="feature-inner">
+        <img src="aiion-transactions.gif" alt="Transactions" class="feature-gif full-gif"/>
+        <h2 class="feature-title">تراکنش‌ها</h2>
+        <p class="feature-desc">متن دقیق زیر گیف (نسخه ج — Feature 3).</p>
+      </div>
+    </section>
+
+    <section id="feature4" class="section feature">
+      <div class="feature-inner">
+        <img src="aiion-chaharom.gif" alt="Feature 4" class="feature-gif full-gif"/>
+        <h2 class="feature-title">قابلیت چهارم</h2>
+        <p class="feature-desc">متن دقیق زیر گیف (نسخه ج — Feature 4).</p>
+      </div>
+    </section>
+
+    <!-- placeholder sections for optional pages -->
+    <section id="howto" class="section">
+      <div style="max-width:900px;text-align:center;">
+        <h2 class="feature-title">نحوه خرید</h2>
+        <p class="feature-desc">در اینجا می‌توانید راهنمای نحوه خرید را قرار دهید (محتوا از نسخه ج).</p>
+      </div>
+    </section>
+
+    <section id="launchpad" class="section">
+      <div style="max-width:900px;text-align:center;">
+        <h2 class="feature-title">Launchpad</h2>
+        <p class="feature-desc">اطلاعات مربوط به Launchpad (نسخه ج).</p>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div style="max-width:900px;text-align:center;">
+        <h2 class="feature-title">درباره ما</h2>
+        <p class="feature-desc">متن درباره پروژه (همان متن در نسخه ج).</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer>
+    <div>© 2025 Aiion Meme — تمامی حقوق محفوظ است.</div>
+    <div class="socials" aria-label="contact">
+      <a href="https://t.me/" target="_blank" rel="noopener"><img src="telegram-icon.png" alt="telegram"></a>
+      <a href="https://twitter.com/" target="_blank" rel="noopener"><img src="twitter-icon.png" alt="twitter"></a>
+      <a href="mailto:info@aiion.com"><img src="email-icon.png" alt="email"></a>
+    </div>
+  </footer>
+
+  <!-- script file (part 2) -->
+  <script src="script.js"></script>
+</body>
+</html>
+/* script.js
+   — Three.js background particles + GSAP interactions
+   — hamburger drawer, touch navigation, keyboard nav
+   — fallback safe behavior if WebGL unsupported
+*/
+
+(function () {
+  "use strict";
+
+  // utility
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // hamburger / drawer
+    const hamburger = $(".hamburger");
+    const drawer = $("#menu-drawer");
+    const navInline = document.querySelector(".nav-inline");
+
+    function toggleDrawer(open) {
+      const show = (open === undefined) ? !drawer.classList.contains("show") : !!open;
+      drawer.classList.toggle("show", show);
+      hamburger.setAttribute("aria-expanded", show ? "true" : "false");
+      drawer.setAttribute("aria-hidden", show ? "false" : "true");
+    }
+
+    hamburger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleDrawer();
+    });
+    // close drawer on outside click or Escape
+    document.addEventListener("click", (e) => {
+      if (drawer.classList.contains("show") && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
+        toggleDrawer(false);
+      }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && drawer.classList.contains("show")) toggleDrawer(false);
+    });
+
+    // GSAP Scroll animations
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      const sections = $$("main section");
+      sections.forEach((sec) => {
+        gsap.fromTo(sec, { autoAlpha: 0, y: 60 }, {
+          autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out",
+          scrollTrigger: { trigger: sec, start: "top 85%", toggleActions: "play none none reverse" }
+        });
+      });
+
+      // parallax subtle on feature gifs
+      $$(".feature-gif").forEach((img, i) => {
+        gsap.to(img, {
+          y: i % 2 === 0 ? -30 : 30,
+          ease: "none",
+          scrollTrigger: { trigger: img, start: "top bottom", end: "bottom top", scrub: 0.6 }
+        });
+      });
+    }
+
+    // touch swipe for sections (mobile-friendly)
+    (function setupTouchNav() {
+      const sections = $$("main section");
+      let startY = 0, startTime = 0;
+      const threshold = 50; // px to be considered swipe
+      const allowedTime = 600; // ms
+
+      document.addEventListener("touchstart", (e) => {
+        const t = e.changedTouches[0];
+        startY = t.pageY;
+        startTime = Date.now();
+      }, {passive: true});
+
+      document.addEventListener("touchend", (e) => {
+        const t = e.changedTouches[0];
+        const dist = t.pageY - startY;
+        const elapsed = Date.now() - startTime;
+        if (elapsed <= allowedTime && Math.abs(dist) >= threshold) {
+          const dir = dist > 0 ? -1 : 1; // -1 = scroll up (previous), +1 = scroll down (next)
+          // find current section in view
+          let current = sections.findIndex(sec => {
+            const rect = sec.getBoundingClientRect();
+            return rect.top <= window.innerHeight/2 && rect.bottom >= window.innerHeight/2;
+          });
+          if (current === -1) current = 0;
+          const target = sections[current + dir];
+          if (target) target.scrollIntoView({ behavior: "smooth" });
+        }
+      }, {passive: true});
+    })();
+
+    // keyboard navigation (up/down)
+    (function setupKeyboardNav(){
+      const sections = $$("main section");
+      document.addEventListener("keydown", (e) => {
+        if (["ArrowDown","ArrowUp","PageDown","PageUp"].includes(e.key)) {
+          e.preventDefault();
+          const currentIndex = sections.findIndex(sec => {
+            const rect = sec.getBoundingClientRect();
+            return rect.top <= window.innerHeight/2 && rect.bottom >= window.innerHeight/2;
+          });
+          let idx = currentIndex === -1 ? 0 : currentIndex;
+          if (e.key === "ArrowDown" || e.key === "PageDown") idx++;
+          if (e.key === "ArrowUp" || e.key === "PageUp") idx--;
+          idx = Math.max(0, Math.min(sections.length-1, idx));
+          sections[idx].scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    })();
+
+    // Three.js background particles (with graceful fallback)
+    (function setupThree() {
+      const canvas = document.getElementById("bg");
+      if (!canvas) return;
+
+      // check WebGL support
+      function webglAvailable() {
+        try {
+          const gl = canvas.getContext("webgl2") || canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+          return !!gl;
+        } catch (e) { return false; }
+      }
+      if (!webglAvailable()) {
+        // hide canvas if not supported
+        canvas.style.display = "none";
+        console.warn("WebGL not available — background fallback used.");
+        return;
+      }
+
+      // Renderer
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      function resize() {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+
+      // Scene + Camera
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 5000);
+      camera.position.z = 800;
+
+      // Lights (subtle)
+      const ambient = new THREE.AmbientLight(0xffffff, 0.4);
+      scene.add(ambient);
+      const dir = new THREE.DirectionalLight(0x80fff0, 0.6);
+      dir.position.set(1, 1, 1);
+      scene.add(dir);
+
+      // Particles geometry
+      const PARTICLES = 7000;
+      const positions = new Float32Array(PARTICLES * 3);
+      const colors = new Float32Array(PARTICLES * 3);
+      for (let i = 0; i < PARTICLES; i++) {
+        const i3 = i * 3;
+        positions[i3] = (Math.random() - 0.5) * 2400;
+        positions[i3 + 1] = (Math.random() - 0.5) * 1600;
+        positions[i3 + 2] = (Math.random() - 0.5) * 1000;
+        // subtle cyan-blue gradient
+        colors[i3] = 0.1 + Math.random() * 0.3;
+        colors[i3 + 1] = 0.6 + Math.random() * 0.4;
+        colors[i3 + 2] = 0.9 + Math.random() * 0.1;
+      }
+
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      const mat = new THREE.PointsMaterial({ size: 2.2, vertexColors: true, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending });
+      const points = new THREE.Points(geo, mat);
+      scene.add(points);
+
+      // subtle motion variables
+      let last = performance.now();
+      function animate() {
+        const now = performance.now();
+        const dt = (now - last) * 0.001;
+        last = now;
+
+        // rotate slowly
+        points.rotation.y += 0.02 * dt;
+        points.rotation.x += 0.01 * dt;
+
+        // reactive parallax based on mouse
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      // camera parallax by mouse / touch
+      let targetX = 0, targetY = 0;
+      window.addEventListener("mousemove", (e) => {
+        const nx = (e.clientX / window.innerWidth - 0.5) * 2;
+        const ny = (e.clientY / window.innerHeight - 0.5) * 2;
+        targetX = nx * 120;
+        targetY = -ny * 80;
+        gsap.to(camera.position, { x: targetX, y: targetY, duration: 0.9, ease: "power2.out" });
+      }, {passive:true});
+
+      // responsive
+      window.addEventListener('resize', () => resize());
+      resize();
+    })();
+
+    // end DOMContentLoaded
+  }); // DOM ready
+})();
