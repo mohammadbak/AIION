@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIION Meme Token</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+
+  <header>
+    <div class="logo">AIION</div>
+    <div class="hamburger">☰</div>
+    <nav>
+      <ul>
+        <li><img src="home-icon.png" class="icon"> <a href="#hero">خانه</a></li>
+        <li><img src="info-icon.png" class="icon"> <a href="#dashboard">ویژگی‌ها</a></li>
+        <li><img src="buy-icon.png" class="icon"> <a href="#howto">نحوه خرید</a></li>
+        <li><img src="launchpad-icon.png" class="icon"> <a href="#launchpad">Launchpad</a></li>
+        <li><img src="about-icon.png" class="icon"> <a href="#about">درباره ما</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero">
+    <img src="aiion-token.gif" class="hero-gif">
+    <h1>AIION MEME TOKEN</h1>
+    <p>ترکیب بلاکچین و هوش مصنوعی با سرگرمی</p>
+  </section>
+
+  <section id="dashboard" class="cards">
+    <div class="card"><img src="aiion-launch.gif"><h3>ویژگی ۱</h3><p>جزئیات Feature اول.</p></div>
+    <div class="card"><img src="aiion-ecosystem.gif"><h3>ویژگی ۲</h3><p>جزئیات Feature دوم.</p></div>
+    <div class="card"><img src="aiion-transactions.gif"><h3>ویژگی ۳</h3><p>جزئیات Feature سوم.</p></div>
+    <div class="card"><img src="aiion-chaharom.gif"><h3>ویژگی ۴</h3><p>جزئیات Feature چهارم.</p></div>
+  </section>
+
+  <footer id="contact">
+    <p>© 2025 AIION. تمامی حقوق محفوظ است.</p>
+    <div class="socials">
+      <a href="https://t.me/" target="_blank"><img src="telegram-icon.png" class="icon-social"></a>
+      <a href="https://twitter.com/" target="_blank"><img src="twitter-icon.png" class="icon-social"></a>
+      <a href="mailto:info@aiion.com"><img src="email-icon.png" class="icon-social"></a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {margin:0;font-family:'Tahoma',sans-serif;color:#fff;overflow-x:hidden;}
+canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background-image:url('robot-background.jpg');background-size:cover;background-position:center;}
+header{position:fixed;top:0;width:100%;background:rgba(0,0,0,0.7);display:flex;justify-content:space-between;align-items:center;padding:10px 30px;z-index:1000;}
+header .logo{font-size:1.5em;font-weight:bold;color:cyan;}
+header nav{display:none;}
+header nav.show{display:block;position:absolute;top:60px;right:20px;background:rgba(0,0,0,0.9);padding:20px;border-radius:10px;}
+header nav ul{list-style:none;padding:0;margin:0;}
+header nav ul li{margin:10px 0;display:flex;align-items:center;}
+header nav ul li a{color:white;text-decoration:none;margin-left:8px;}
+header nav ul li img.icon{width:20px;height:20px;}
+.hamburger{font-size:1.8em;cursor:pointer;}
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.hero .hero-gif{max-width:300px;margin-bottom:20px;}
+.hero h1{font-size:3em;color:cyan;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:100px 20px;}
+.card{background:rgba(255,255,255,0.05);border-radius:15px;padding:20px;text-align:center;transition:transform 0.3s ease;}
+.card:hover{transform:translateY(-10px);}
+.card img{max-width:100%;border-radius:10px;margin-bottom:15px;}
+footer{text-align:center;padding:20px;background:rgba(0,0,0,0.8);}
+footer .socials img.icon-social{width:30px;height:30px;margin:0 10px;}
+const hamburger=document.querySelector('.hamburger');const nav=document.querySelector('nav');hamburger.addEventListener('click',()=>{nav.classList.toggle('show');});
+gsap.registerPlugin(ScrollTrigger);gsap.utils.toArray("section").forEach(section=>{gsap.from(section,{scrollTrigger:{trigger:section,start:"top 85%"},opacity:0,y:80,duration:1.2,ease:"power3.out"});});
+const canvas=document.querySelector("#bg");const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setSize(window.innerWidth,window.innerHeight);renderer.setPixelRatio(window.devicePixelRatio);
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,3000);camera.position.z=800;
+const particleCount=5000;const geometry=new THREE.BufferGeometry();const positions=new Float32Array(particleCount*3);for(let i=0;i<particleCount*3;i++){positions[i]=(Math.random()-0.5)*3000;}geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
+const material=new THREE.PointsMaterial({color:0x00fff7,size:2,transparent:true,opacity:0.7});
+const particles=new THREE.Points(geometry,material);scene.add(particles);
+function animate(){requestAnimationFrame(animate);particles.rotation.y+=0.0008;particles.rotation.x+=0.0003;renderer.render(scene,camera);}
+animate();
+window.addEventListener("resize",()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);});
