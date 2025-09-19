@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aiion Meme - Ultra Professional</title>
+
+<!-- Security -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline';">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="no-referrer">
+
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+html, body {width:100%; height:100%; font-family:'Roboto Mono',monospace; background:#000; color:#fff; overflow-x:hidden;}
+canvas {position:fixed; top:0; left:0; z-index:0; display:block;}
+
+/* Header */
+header{
+  position:absolute; top:0; width:100%; padding:20px 50px; display:flex; justify-content:space-between; align-items:center;
+  background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); z-index:10; color:#00ffd1; font-size:1.8rem;
+}
+nav a{color:#00ffd1; margin-left:20px; text-decoration:none; font-weight:700; transition:0.3s;}
+nav a:hover{color:#0ff; transform:scale(1.1);}
+
+/* Sections */
+section{
+  position:relative; width:100%; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; padding:50px; z-index:5; opacity:1;
+}
+.card{
+  background: rgba(255,255,255,0.05); border-radius:20px; padding:30px; margin:20px 0;
+  box-shadow:0 0 15px rgba(0,255,255,0.2); transition: transform 0.5s, box-shadow 0.5s;
+}
+.card:hover{
+  transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+  box-shadow:0 0 35px rgba(0,255,255,0.7);
+}
+
+h2{font-size:3rem; margin-bottom:20px; color:#0ff; text-shadow:0 0 10px #0ff;}
+p{max-width:700px; line-height:1.6; margin-bottom:30px;}
+.gif-placeholder{width:300px; height:300px; display:flex; justify-content:center; align-items:center; border-radius:20px; margin-bottom:20px; background-size:cover; background-position:center; background-color: rgba(0,255,255,0.1);}
+
+/* Social Icons */
+.social-icons{display:flex; gap:20px; margin-top:20px;}
+.social-icons a{color:#00ffd1; font-size:1.5rem; transition:0.3s; text-shadow:0 0 5px #00ffd1;}
+.social-icons a:hover{color:#0ff; transform:scale(1.4); text-shadow:0 0 20px #0ff;}
+
+/* Buttons */
+button{background:#00ffd1; border:none; padding:12px 25px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.3s; color:#000; box-shadow:0 0 5px #00ffd1;}
+button:hover{transform:scale(1.1); box-shadow:0 0 25px #0ff; animation:pulse 1.2s infinite;}
+@keyframes pulse {0%,100%{transform:scale(1.1);}50%{transform:scale(1.15);}}
+
+/* Footer */
+footer{width:100%; padding:40px 20px; background:#001f26; color:#0ff; text-align:center;}
+</style>
+</head>
+<body>
+
+<header>
+  Aiion Meme
+  <nav>
+    <a href="#about">معرفی</a>
+    <a href="#features">ویژگی‌ها</a>
+    <a href="#team">تیم</a>
+    <a href="#contact">تماس</a>
+  </nav>
+</header>
+
+<!-- Sections with Cards and Placeholders -->
+<section id="about" class="card">
+  <h2>معرفی پروژه Aiion Meme</h2>
+  <p>وب‌سایتی مدرن با پس‌زمینه 3D و افکت‌های تعاملی.</p>
+  <div class="gif-placeholder" style="background-image:url('images/gif1.gif');">گیف شما اینجا</div>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-discord"></i></a>
+    <a href="#"><i class="fab fa-telegram"></i></a>
+  </div>
+</section>
+
+<section id="features" class="card">
+  <h2>ویژگی‌ها</h2>
+  <p>امنیت بالا، انیمیشن 3D و سازگاری کامل با دستگاه‌ها.</p>
+  <div class="gif-placeholder" style="background-image:url('images/gif2.gif');">گیف شما اینجا</div>
+  <button>اطلاعات بیشتر</button>
+</section>
+
+<section id="team" class="card">
+  <h2>تیم ما</h2>
+  <p>توسعه‌دهندگان و طراحان Aiion Meme بهترین تجربه کاربری را فراهم می‌کنند.</p>
+  <div class="gif-placeholder" style="background-image:url('images/gif3.gif');">گیف شما اینجا</div>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+</section>
+
+<section id="contact" class="card">
+  <h2>تماس با ما</h2>
+  <p>برای همکاری و سوالات بیشتر: <a href="mailto:contact@aiionmeme.com">contact@aiionmeme.com</a></p>
+  <div class="gif-placeholder" style="background-image:url('images/gif4.gif');">گیف شما اینجا</div>
+  <button>ارسال پیام</button>
+</section>
+
+<footer>
+  <p>© 2025 Aiion Meme | تمام حقوق محفوظ است</p>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+
+<script>
+// ---------- Three.js Scene ----------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,3000);
+camera.position.z = 600;
+
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Lights
+const ambient = new THREE.AmbientLight(0xffffff,0.5);
+scene.add(ambient);
+const directional = new THREE.DirectionalLight(0x00ffff,0.8);
+directional.position.set(1,1,1);
+scene.add(directional);
+
+// Particles
+const particleCount = 9000;
+const geometry = new THREE.BufferGeometry();
+const positions = [];
+const colors = [];
+for(let i=0;i<particleCount;i++){
+  positions.push((Math.random()-0.5)*2000);
+  positions.push((Math.random()-0.5)*2000);
+  positions.push((Math.random()-0.5)*2000);
+  colors.push(Math.random(), Math.random()*0.5+0.5, 1);
+}
+geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions,3));
+geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors,3));
+
+const material = new THREE.PointsMaterial({size:2, vertexColors:true, transparent:true, opacity:0.8});
+const particles = new THREE.Points(geometry, material);
+scene.add(particles);
+
+// Animate particles
+function animateParticles() {
+  requestAnimationFrame(animateParticles);
+  const colorsArr = geometry.attributes.color.array;
+  for(let i=0;i<colorsArr.length;i+=3){
+    colorsArr[i+0] = 0.5 + 0.5*Math.sin(Date.now()*0.0005 + i);
+    colorsArr[i+1] = 0.5 + 0.5*Math.cos(Date.now()*0.0004 + i);
+  }
+  geometry.attributes.color.needsUpdate = true;
+  particles.rotation.y += 0.001;
+  particles.rotation.x += 0.0007;
+  renderer.render(scene, camera);
+}
+animateParticles();
+
+// Mouse-based camera parallax
+document.addEventListener("mousemove", e=>{
+  gsap.to(camera.position, {
+    x: (e.clientX/window.innerWidth-0.5)*400,
+    y: -(e.clientY/window.innerHeight-0.5)*400,
+    duration:0.5
+  });
+});
+
+// ---------- GSAP ScrollTrigger ----------
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray(".card").forEach((card,i)=>{
+  gsap.from(card, {
+    opacity:0, y:50, scale:0.95, duration:1.2, ease:"power2.out",
+    scrollTrigger: { trigger: card, start:"top 90%", toggleActions:"play none none reverse" }
+  });
+
+  // Parallax subtle
+  gsap.to(card, {
+    y: i%2===0 ? 30 : -30,
+    scrollTrigger: { trigger: card, start:"top bottom", end:"bottom top", scrub:0.5 }
+  });
+});
+
+// ---------- 3D hover tilt on cards ----------
+document.querySelectorAll(".card").forEach(card=>{
+  card.addEventListener("mousemove", e=>{
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const midX = rect.width/2;
+    const midY = rect.height/2;
+    const rotateX = ((y-midY)/midY)*10;
+    const rotateY = ((x-midX)/midX)*10;
+    gsap.to(card, {rotationX:rotateX, rotationY:rotateY, transformPerspective:600, transformOrigin:"center", duration:0.3});
+    gsap.to(card, {boxShadow:"0 0 40px rgba(0,255,255,0.8)", duration:0.3});
+  });
+  card.addEventListener("mouseleave", ()=>{
+    gsap.to(card, {rotationX:0, rotationY:0, boxShadow:"0 0 15px rgba(0,255,255,0.2)", duration:0.5});
+  });
+});
+
+// Hover glow for icons and buttons
+document.querySelectorAll('.social-icons a, button').forEach(el=>{
+  el.addEventListener('mouseenter', ()=>{ gsap.to(el,{boxShadow:"0 0 30px #0ff", scale:1.3, duration:0.5}) });
+  el.addEventListener('mouseleave', ()=>{ gsap.to(el,{boxShadow:"0 0 5px #00ffd1", scale:1, duration:0.5}) });
+});
+
+// Resize
+window.addEventListener('resize', ()=>{
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
